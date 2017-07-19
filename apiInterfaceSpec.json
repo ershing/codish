@@ -1,0 +1,30 @@
+{
+    "server":"example",
+    "baseUrl":"http://localhost",
+    "port":1000,
+    "remark":"样板服务",
+    "api":[
+        {
+            "name":"获取某个名字的用户",
+            "remark":"测试接口一",
+            "url":"v1/users",
+            "method":"GET",
+            "req":{
+                "user_name":{ "remark":"用户名称" , "type":"string" , "necessary":true }
+            },
+            "res":{
+                "status":1,
+                "msg":"成功",
+                "data":{
+                    "type":"object",
+                    "value":{
+                        "user_name":{ "remark":"用户名称" , "type":"string" , "necessary":true },
+                        "sex":{ "remark":"用户性别" , "type":"string" , "necessary":true },
+                        "age":{ "remark":"用户年龄" , "type":"string" , "necessary":true }
+                    }
+                }
+            }
+        }
+
+    ]
+}

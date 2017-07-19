@@ -1,0 +1,27 @@
+{
+  "name": "codish",
+  "version": "1.0.0",
+  "description": "utils for ershing",
+  "main": "codish.js",
+  "scripts": {
+    "test": "nodemon codish.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ershing/codish.git"
+  },
+  "keywords": [
+    "utils",
+    "codish"
+  ],
+  "bin": "./codish.js",
+  "author": "ershing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ershing/codish/issues"
+  },
+  "homepage": "https://github.com/ershing/codish#readme",
+  "dependencies": {
+    "commander": "^2.11.0"
+  }
+}
