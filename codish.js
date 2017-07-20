@@ -13,7 +13,7 @@ program
     .description(`生成服务器端代码等相关操作\n
     <op>可选参数：init,refresh,service,router,operator,model,add\n\n
     <op >    : *********************解析**********************\n
-    example     : 初始化代码,完整输出各类文件,已存在则不修改\n
+    example  : 初始化代码,完整输出各类文件,已存在则不修改\n
     init     : 初始化代码,完整输出各类文件,已存在则不修改\n
     entry    : 初始化代码,完整输出各类文件,已存在则不修改\n
     router   : 重载 路由 代码,慎用：会重写已更改的文件\n

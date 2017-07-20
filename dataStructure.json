@@ -1,0 +1,48 @@
+{
+    "dialect": "mysql",
+    "host": "192.168.1.131",
+    "port": 3306,
+    "user": "admin",
+    "password": "admin",
+    "schema": "example",
+    "tables": [
+        {
+            "name": "users",
+            "remark": "用户信息表",
+            "group":"account",
+            "groupRemark":"账号信息组",
+            "fields": [
+                {
+                    "name": "id",
+                    "remark": "用户信息id",
+                    "type": "BIGINT",
+                    "length": 8,
+                    "defaultValue": 0,
+                    "primaryKey": true
+                },
+                {
+                    "name": "name",
+                    "remark": "用户名称",
+                    "type": "VARCHAR",
+                    "length": 30,
+                    "defaultValue": "''",
+                    "unique": true
+                },
+                {
+                    "name": "sex",
+                    "remark": "用户性别",
+                    "type": "VARCHAR",
+                    "length": 10,
+                    "defaultValue": "男"
+                },
+                {
+                    "name": "age",
+                    "remark": "用户年龄",
+                    "type": "TINYINT",
+                    "length": 1,
+                    "defaultValue": 0
+                }
+            ]
+        }
+    ]
+}
