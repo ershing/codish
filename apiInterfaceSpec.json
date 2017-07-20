@@ -1,30 +1,86 @@
 {
-    "server":"example",
+    "server":"accountService",
     "baseUrl":"http://localhost",
     "port":1000,
-    "remark":"样板服务",
-    "api":[
+    "remark":"账号服务",
+    "apis":[
         {
-            "name":"获取某个名字的用户",
-            "remark":"测试接口一",
-            "url":"v1/users",
-            "method":"GET",
+            "name":"添加用户信息",
+            "remark":"添加用户名称、姓氏、年龄等信息",
+            "url":"v1/users/",
+            "method":"POST",
             "req":{
-                "user_name":{ "remark":"用户名称" , "type":"string" , "necessary":true }
+                "body":{
+                    "name": { "remark": "用户名称" , "type": "string" , "necessary": true },
+                    "sex" : { "remark": "用户性别" , "type": "string" , "necessary": true },
+                    "age" : { "remark": "用户年龄" , "type": "number" , "necessary": true }
+                }
             },
             "res":{
-                "status":1,
-                "msg":"成功",
+                "status":[200,500],
+                "msg":["成功","系统错误"],
+                "data":{
+                    "type":"object",
+                    "value":{}
+                }
+            }
+        },
+        {
+            "name":"获取用户信息",
+            "remark":"获取某用户的姓氏、年龄等信息",
+            "url":"v1/users/:name",
+            "method":"GET",
+            "req":{
+                "params":{
+                    "name":{ "remark":"用户名称" , "type":"string" , "necessary":true }
+                }
+            },
+            "res":{
+                "status":[200,500],
+                "msg":["成功","系统错误"],
                 "data":{
                     "type":"object",
                     "value":{
-                        "user_name":{ "remark":"用户名称" , "type":"string" , "necessary":true },
-                        "sex":{ "remark":"用户性别" , "type":"string" , "necessary":true },
-                        "age":{ "remark":"用户年龄" , "type":"string" , "necessary":true }
+                        "name": { "remark": "用户名称" , "type": "string" },
+                        "sex" : { "remark": "用户性别" , "type": "string" },
+                        "age" : { "remark": "用户年龄" , "type": "number" }
                     }
                 }
             }
+        },
+        {
+            "name":"更改用户信息",
+            "remark":"更改某用户的姓氏、年龄等信息",
+            "url":"v1/users/",
+            "method":"PUT",
+            "req":{
+                "body":{
+                    "name": { "remark": "用户名称" , "type": "string" , "necessary": true },
+                    "sex" : { "remark": "用户性别" , "type": "string" , "necessary": true },
+                    "age" : { "remark": "用户年龄" , "type": "number" , "necessary": true }
+                }
+            },
+            "res":{
+                "status":[200,500],
+                "msg":["成功","系统错误"],
+                "data":{}
+            }
+        },
+        {
+            "name":"删除用户信息",
+            "remark":"删除用户名称、姓氏、年龄等信息",
+            "url":"v1/users/:name",
+            "method":"DELETE",
+            "req":{
+                "params":{
+                    "name":{ "remark":"用户名称" , "type":"string" , "necessary":true }
+                }
+            },
+            "res":{
+                "status":[200,500],
+                "msg":["成功","系统错误"],
+                "data":{}
+            }
         }
-
     ]
 }
