@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ershing/codish#readme",
   "dependencies": {
-    "commander": "^2.11.0"
+    "commander": "^2.11.0",
+    "pug": "^2.0.0-rc.2"
   }
 }
