@@ -7,7 +7,7 @@
  4.基于约定的api接口格式定义：apiInterfaceSpec.json；（[格式例子](https://github.com/ershing/codish/blob/master/apiInterfaceSpec.json)）<br>
  5.基于约定的状态码结构格式定义：statusAndMsg.json；（[格式例子](https://github.com/ershing/codish/blob/master/statusAndMsg.json)）<br>
  6.只生成对单个数据表的增、删、查、改四项操作（分别对应访问方法为：POST、DELETE、GET、PUT），其他操作只生成代码框架，需手写剩余代码；<br>
- 7.三个基础json文件需要手动编辑，后续将开发可视化工具编辑。
+ 7.三个基础json文件需要手动编辑，后续将开发为可视化工具编辑。
 
 ## 安装
 命令窗口中输入如下命令行
@@ -28,7 +28,7 @@ npm i codish -g
 
 ## 命令行注释
 | 命令行       | 作用说明 | 
-| --------    | -----  | 
+| :--------:    | :-----:  | 
 | codish express example  | 创建项目样板文件（仅供参考）  |
 | codish express init  | 初始化项目文件   |
 | codish express refresh  | 重载项目所有文件   |
@@ -39,7 +39,7 @@ npm i codish -g
 | codish express test  | 生成postman接口测试文件   |
 <br>
 
-###注意：<br>
+### 注意：<br>
 1.初始化项目所有文件操作 **codish express init** ，若修改过三个基础json文件后继续使用该命令，即将生成的代码文件若已存在则不会进行更新。<br>
 2.重载项目所有文件操作 **codish express refresh** ，若修改过三个基础json文件后继续使用该命令，即将生成的代码文件若已存在也会进行更新。<br>
 3.其余对应重载命令，则无论文件是否存在也会更新文件内容。
