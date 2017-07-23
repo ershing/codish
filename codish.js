@@ -29,8 +29,7 @@ program
     <op>可选参数：postman
 
     <op >    : ***********************解析***********************
-    test     : 生成postman接口测试文件
-    [path]   : 可选参数，默认本地，可填168，对应192.168.1.168的主机`)
+    test     : 生成postman接口测试文件`)
     .action(testFiles);
 
 program
