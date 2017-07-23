@@ -1,5 +1,5 @@
 {
-    "server":"accountService",
+    "server":"exampleProject",
     "baseUrl":"http://localhost",
     "port":1000,
     "remark":"账号服务",
