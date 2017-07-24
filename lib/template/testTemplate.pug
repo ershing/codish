@@ -1,0 +1,165 @@
+- function guid() {
+-    return 'xxxxxxxx-xxxx-3xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+-        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+-        return v.toString(16);
+-    });
+-}
+- function isID(word){
+-    var notLongID = ['area_id','company_type_id','cube_id'];
+-    return notLongID.includes(word) ? false : word.includes('id');
+-}
+- function query(val){
+-    var queryArray = [];
+-    for(var key in val.req){
+-       if (!queryArray.includes(key)){
+-           if(isID(key)){
+-               queryArray.push(key+'='+guid());
+-           }
+-           else{
+-               queryArray.push(key+"=");
+-           }
+-       }
+-    }
+-    return String('?'+queryArray.join('&'));
+-}
+|{
+|     "variables": [],
+|     "info": {
+|         "name": "#{api_name}",
+|         "description": "#{summary}",
+|         "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+|     },
+|     "item": [
+|
+each val,index in api
+    if val.type.toLowerCase() === 'get'
+        |         {
+        |             "name": "#{val.name}",
+        |             "event": [
+        |                 {
+        |                     "listen": "test",
+        |                     "script": {
+        |                         "type": "text/javascript",
+        |                         "exec": [
+        |                             "tests[\"if response has code\"] = responseBody.has(\"code\");",
+        |                             "",
+        |                             "var jsonData = JSON.parse(responseBody);",
+        |                             "tests[\"if code equals 1\"] = jsonData.code === 1;"
+        |                         ]
+        |                     }
+        |                 }
+        |             ],
+        |             "request": {
+        |
+        if Object.keys(val.req).length !== 0
+            |                 "url": "#{val.url+String(query(val))}",
+            |
+        else
+            |                 "url": "#{val.url}",
+        |                 "method": "#{val.type.toUpperCase()}",
+        | 
+        if Object.keys(val.req).length !== 0
+            |                 "query": [
+            |   
+            - var count = 0;
+            for value,key in val.req
+                |                     {
+                |                         "key": "#{key}",
+                |
+                if isID(key)
+                    |                         "value": "#{guid()}",
+                    |
+                else
+                    |                         "value": "",
+                    |
+                |                         "equals": true,
+                |                         "description": "#{value.desc}"
+                |
+                - count++
+                if count === Object.keys(val.req).length
+                    |                     }
+                    |                 ],
+                    |
+                else
+                    |                     },
+                    |
+        |                 "header": [
+        |                     {
+        |                         "key": "Content-Type",
+        |                         "value": "application/x-www-form-urlencoded",
+        |                         "description": ""
+        |                     }
+        |                 ]
+        |             }
+        |
+        if index < api.length-1
+            |         },
+            |
+        else
+            |         }
+            |
+    else
+        |         {
+        |             "name": "#{val.name}",
+        |             "event": [
+        |                 {
+        |                     "listen": "test",
+        |                     "script": {
+        |                         "type": "text/javascript",
+        |                         "exec": [
+        |                             "tests[\"if response has code\"] = responseBody.has(\"code\");",
+        |                             "",
+        |                             "var jsonData = JSON.parse(responseBody);",
+        |                             "tests[\"if code equals 1\"] = jsonData.code === 1;"
+        |                         ]
+        |                     }
+        |                 }
+        |             ],
+        |             "request": {
+        |                 "url": "#{val.url}",
+        |                 "method": "#{val.type.toUpperCase()}",
+        |                 "header": [
+        |                     {
+        |                         "key": "Content-Type",
+        |                         "value": "application/x-www-form-urlencoded",
+        |                         "description": ""
+        |                     }
+        |                 ],
+        |                 "body": {
+        |                     "mode": "urlencoded",
+        |                     "urlencoded":[
+        |
+        - var count = 0;
+        for value,key in val.req
+            |                         {
+            |                             "key": "#{key}",
+            |
+            if isID(key)
+                |                             "value": "#{guid()}",
+                |
+            else
+                |                             "value": "",
+                |
+            |                             "description": "#{value.desc}"
+            |
+            - count++
+            if count === Object.keys(val.req).length
+                |                         }
+                |
+            else
+                |                         },
+                |
+        if index < api.length-1
+            |                     ]
+            |                 }
+            |             }
+            |         },
+            |
+        else
+            |                     ]
+            |                 }
+            |             }
+            |         }
+            |
+|     ]
+|}

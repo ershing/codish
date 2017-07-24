@@ -1,0 +1,23 @@
+if fileName === 'upsert' || fileName === 'search'|| fileName === 'get_by_id'|| fileName === 'delete'
+    |const { getOperationData } = require('database-op');
+    |
+else
+    |const { operator } = require('database-op');
+    |
+|const path = require('path');
+|
+|function #{fileName}(req, res) {
+|    var modelPath = path.resolve(__dirname,'../../model/#{fileDir}_model');
+|
+if fileName === 'upsert' || fileName === 'search'|| fileName === 'get_by_id'|| fileName === 'delete'
+        |    getOperationData(req, null, '#{name}',modelPath, '#{fileName}',(result) => {
+        |        return res.send(result);
+        |    });
+        |
+else
+        |
+        |
+        |
+|}
+|
+|module.exports = #{fileName};

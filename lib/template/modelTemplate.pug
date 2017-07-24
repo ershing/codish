@@ -1,0 +1,81 @@
+|const Sequelize = require('sequelize');
+|const apibase = require('api-base');
+|const log = apibase.log;
+|
+|var sequelize = new Sequelize(
+|     apibase.config.mysql.name, 
+|     apibase.config.mysql.user, 
+|     apibase.config.mysql.password, 
+|     {
+|         dialect: "mysql",
+|         host: apibase.config.mysql.host,
+|         port: apibase.config.mysql.port
+|     }
+|);
+|
+|var #{tableName} = sequelize.define('#{tableName}', {
+|
+each val,index in fields
+    |     #{val.name}: {
+    |         field: '#{val.name}', //#{val.summary}
+    |
+    if val.type.toLowerCase() === "bigint"
+        |         type: Sequelize.INTEGER(8),
+        |
+    if (val.type.toLowerCase() === "nvarchar" || val.type.toLowerCase() === "varchar" || val.type.toLowerCase() === "char")
+        |         type: Sequelize.STRING(#{val.dblength}),
+        |
+    if (val.type.toLowerCase() === "datetime" || val.type.toLowerCase() === "timestamp")
+        |         type: Sequelize.DATE,    
+        |
+    if val.type.toLowerCase() === "smallint"
+        |         type: Sequelize.INTEGER(1), 
+        | 
+    if (val.type.toLowerCase() === "bit" || val.type.toLowerCase() === "tinyint")
+        |         type: Sequelize.BOOLEAN,      
+        |
+    if val.type.toLowerCase() === "decimal"
+        if val.dblength.length == 3
+            |         type: Sequelize.DECIMAL(#{val.dblength[0]},#{val.dblength[2]}),
+            |
+        else
+            |         type: Sequelize.DECIMAL(#{val.dblength}),
+            |  
+    if (val.type.toLowerCase() === "text" || val.type.toLowerCase() ===  "longtext")
+        |         type: Sequelize.TEXT, 
+        |
+    if val.isPrimary
+        |         primaryKey: true,
+        |
+    else
+        |         primaryKey: false,
+        |
+    if (val.type.toLowerCase() != "text" && val.type.toLowerCase() != "longtext")
+        |         allowNull: false,
+        |
+    else
+        |         allowNull: true
+        |
+    if (val.type.toLowerCase() == "datetime" || val.type.toLowerCase() == "timestamp")
+        |         defaultValue: new Date()
+        |
+    else if (val.type.toLowerCase() != "text" && val.type.toLowerCase() != "longtext")
+        if (val.type.toLowerCase() != "bigint" && val.isPrimary)
+            |         defaultValue: apibase.uuid_v1()
+            |
+        else
+            |         defaultValue: #{val.dftValue}
+            |
+    if index < fields.length-1
+        |     },
+        |
+    else
+        |     }    
+        |
+|}, {
+|         freezeTableName: true, // 模型对应的表名与模型名将相同
+|         createdAt: false,      // 不自动创建create_time字段
+|         updatedAt: false       // 不自动创建update_time字段
+|     });
+|
+|module.exports = #{tableName};

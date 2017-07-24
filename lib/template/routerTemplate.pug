@@ -1,0 +1,16 @@
+|const express = require('express');
+|var router = express.Router();
+|
+|
+each val in api
+    |//'name':'#{val.name}'
+    |
+    if val.type.toLowerCase() === 'get'
+        |router.get('#{val.url}',require('./controller/#{val.fileDir}/#{val.fileName}.js'));
+        |
+        |
+    if val.type.toLowerCase() === 'post'
+        |router.post('#{val.url}',require('./controller/#{val.fileDir}/#{val.fileName}.js'));
+        |
+        |
+|module.exports = router;

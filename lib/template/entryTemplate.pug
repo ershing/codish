@@ -1,0 +1,44 @@
+|const express = require('express');
+|const bodyParser = require('body-parser');
+|const apibase = require('api-base');
+|const { log } = require('api-base');
+|
+|app = express();
+|
+|app.use(function (req, res, next) {
+|    res.set({
+|        'Access-Control-Allow-Origin': '*',
+|        'Access-Control-Allow-Headers': ['Content-Type']
+|    });
+|    next();
+|});
+|
+|app.use(bodyParser.json());
+|app.use(bodyParser.urlencoded({ extended: true }));
+|
+|app.use(require('./src/router.js'));
+|
+|app.use(function (err, req, res, next) {
+|    log('error','#{api_name}', err.message, err.stack);
+|    var resObj = apibase.get_status("系统错误");
+|    resObj.desc += err.message;
+|    res.status(500).send(resObj);
+|});
+|
+|var tem_port = 0;
+|console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+|if (process.env.NODE_ENV == "debug"){
+|    tem_port = 100#{api_idx};
+|}
+|
+|var server = app.listen(tem_port);
+|server.on('listening', function () {
+|    var port = server.address().port;
+|    apibase.regist_instance(port);
+|    console.log('*****#{api_name}微服务 在端口【 %d 】监听*****', port);
+|});
+|
+|server.on("close", function () {
+|    var port = server.address().port;
+|    console.log('*****#{api_name}微服务 在端口【 %d 】监听***** 当前正在停止', port)
+|});
