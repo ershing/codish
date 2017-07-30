@@ -7,7 +7,7 @@
         {
             "name":"添加用户信息",                      //该api名称
             "remark":"添加用户名称、姓氏、年龄等信息",    //该api备注
-            "url":"v1/users/",   //该api的访问url，完成地址为 "http://localhost:1000/v1/users/"
+            "url":"/v1/users/",   //该api的访问url，完成地址为 "http://localhost:1000/v1/users/"
             "method":"POST",     //访问方法，包含POST、GET、PUT、DELETE四种
             "req":{              //请求数据
                 "body":{         //数据放置的位置，POST和PUT放在body中，GET和DELETE放在params中
@@ -28,7 +28,7 @@
         {
             "name":"获取用户信息",
             "remark":"获取某用户的姓氏、年龄等信息",
-            "url":"v1/users/:name",
+            "url":"/v1/users/:name",
             "method":"GET",
             "req":{
                 "params":{
@@ -51,7 +51,7 @@
         {
             "name":"更改用户信息",
             "remark":"更改某用户的姓氏、年龄等信息",
-            "url":"v1/users/",
+            "url":"/v1/users/",
             "method":"PUT",
             "req":{
                 "body":{
@@ -69,7 +69,7 @@
         {
             "name":"删除用户信息",
             "remark":"删除用户名称、姓氏、年龄等信息",
-            "url":"v1/users/:name",
+            "url":"/v1/users/:name",
             "method":"DELETE",
             "req":{
                 "params":{

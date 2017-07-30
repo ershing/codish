@@ -1,18 +1,16 @@
-if fileName === 'upsert' || fileName === 'search'|| fileName === 'get_by_id'|| fileName === 'delete'
-    |const { getOperationData } = require('database-op');
-    |
-else
-    |const { operator } = require('database-op');
-    |
-|const path = require('path');
+-var fileName = val.type.toLowerCase()
+if fileName === 'get' || fileName === 'post'|| fileName === 'put'|| fileName === 'delete'
+|const sequelize = require('sequelize');
 |
 |function #{fileName}(req, res) {
-|    var modelPath = path.resolve(__dirname,'../../model/#{fileDir}_model');
-|
-if fileName === 'upsert' || fileName === 'search'|| fileName === 'get_by_id'|| fileName === 'delete'
-        |    getOperationData(req, null, '#{name}',modelPath, '#{fileName}',(result) => {
-        |        return res.send(result);
-        |    });
+|    var #{fileDir}_model = require('../../model/#{fileDir}_model');
+if fileName === 'post'
+    |   #{fileDir}_model.create(req.body).then((err,result)=>{
+    |       if(err){
+    |           return res.writeHead(500,'系统错误');
+    |       }
+    |       res.send(result);
+    |   });
         |
 else
         |
