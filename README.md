@@ -5,9 +5,8 @@
  2.基于数据库orm工具：sequelize；<br>
  3.基于约定的数据结构格式定义：dataStructure.json；（[格式例子](https://github.com/ershing/codish/blob/master/dataStructure.json)）<br>
  4.基于约定的api接口格式定义：apiInterfaceSpec.json；（[格式例子](https://github.com/ershing/codish/blob/master/apiInterfaceSpec.json)）<br>
- 5.基于约定的状态码结构格式定义：statusAndMsg.json；（[格式例子](https://github.com/ershing/codish/blob/master/statusAndMsg.json)）<br>
- 6.只生成对单个数据表的增、删、查、改四项操作（分别对应访问方法为：POST、DELETE、GET、PUT），其他操作只生成代码框架，需手写剩余代码；<br>
- 7.三个基础json文件需要手动编辑，后续将开发为可视化工具编辑。
+ 5.只生成对单个数据表的增、删、查、改四项操作（分别对应访问方法为：POST、DELETE、GET、PUT），其他操作只生成代码框架，需手写剩余代码；<br>
+ 6.三个基础json文件需要手动编辑，后续将开发为可视化工具编辑。
 
 ## 安装
 命令窗口中输入如下命令行
@@ -19,8 +18,7 @@ npm i codish -g
  二、新建项目文件夹，如exampleProject,并进入项目文件夹；<br>
  三、新建dataStructure.json文件（[例子](https://github.com/ershing/codish/blob/master/dataStructure.json)），编写数据表字段等内容，[注释查看](https://github.com/ershing/codish/blob/master/dataStructureNotes.json))；<br>
  四、新建apiInterfaceSpec.json文件（[例子](https://github.com/ershing/codish/blob/master/apiInterfaceSpec.json)），编写api接口要求等内容，[注释查看](https://github.com/ershing/codish/blob/master/apiInterfaceSpecNotes.json))；<br>
- 五、新建statusAndMsg.json文件（[例子](https://github.com/ershing/codish/blob/master/statusAndMsg.json)），编写状态码及状态描述等内容，[注释查看](https://github.com/ershing/codish/blob/master/statusAndMsgNotes.json)；<br>
- 六、在项目文件夹中打开命令窗口，输入命令 **codish init** 即可一键生成后端代码；<br>
+ 五、在项目文件夹中打开命令窗口，输入命令 **codish init** 即可一键生成后端代码；<br>
  六、命令行运行 **codish express test** 即可生成postman测试文件，文件可自行导入或一键测试；<br>
  七、命令行运行 **npm init** 初始化项目；<br>
  八、命令行运行 **npm i express body-parser mysql2 sequelize newman --save** 安装相关模块；<br>
