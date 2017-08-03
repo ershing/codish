@@ -5,14 +5,6 @@
 |
 |app = express();
 |
-|app.use(function (req, res, next) {
-|    res.set({
-|        'Access-Control-Allow-Origin': '*',
-|        'Access-Control-Allow-Headers': ['Content-Type']
-|    });
-|    next();
-|});
-|
 |app.use(bodyParser.json());
 |app.use(bodyParser.urlencoded({ extended: true }));
 |
@@ -25,10 +17,8 @@
 |    res.status(500).send(resObj);
 |});
 |
-|var tem_port = #{port};
-|var server = app.listen(tem_port);
+|var port = #{port};
+|var server = app.listen(port);
 |server.on('listening', function () {
-|    var port = server.address().port;
-|    apibase.regist_instance(port);
 |    console.log('*****#{server}服务器 在端口【 %d 】监听*****', port);
 |});
