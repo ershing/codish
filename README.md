@@ -1,4 +1,4 @@
-# Codish（开发中）
+# Codish（未完成，没动力）
  一个一键生成Node服务器端代码的工具<br><br>
  **说明** :<br>
  1.基于web框架：express；<br>
